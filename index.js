@@ -23,17 +23,18 @@ module.exports = function (builder, options) {
 		}
 
 		var files = builder.config.styles;
-		var parser = new less.Parser();
+		var parser = new less.Parser(options.env);
 
 		async.forEach(files, function (file, cb) {
 
 			var stylesheet = builder.path(file);
+			var cssConfig = options.cssConfig || {};
 
 			if (!fs.existsSync(stylesheet)) {
 				return cb(new Error("'" + stylesheet + "'  doesn't exist."));
 			}
 
-			if (!options.compress && !isLess(file)) {
+			if (!cssConfig.compress && !isLess(file)) {
 				return cb();
 			}
 
@@ -44,10 +45,10 @@ module.exports = function (builder, options) {
 					return cb(error);
 				}
 
-				var css = tree.toCSS(options);
+				var css = tree.toCSS(cssConfig);
 
 
-				var newFile = path.basename(file, path.extname(file)) + ((options.minify) ? '-compressed' : '') + '.css';
+				var newFile = path.basename(file, path.extname(file)) + ((cssConfig.compress) ? '-compressed' : '') + '.css';
 				builder.addFile('styles', newFile, css);
 				builder.removeFile('styles', file);
 
