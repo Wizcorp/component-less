@@ -1,6 +1,6 @@
 # component-less
 
-A plugin to transpile Sass files for the component builder.
+A plugin to transpile Less files for the component builder.
 
 ## Install
 
