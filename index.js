@@ -23,7 +23,7 @@ module.exports = function (builder, options) {
 		}
 
 		var files = builder.config.styles;
-		var parser = new less.Parser(options.env);
+		var parser = new less.Parser(options.env || {});
 
 		async.forEach(files, function (file, cb) {
 
