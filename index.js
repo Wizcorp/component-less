@@ -22,11 +22,10 @@ module.exports = function (builder, options) {
 			return callback();
 		}
 
-		var files = builder.config.styles;
-		var parser = new less.Parser(options.env || {});
-
-		async.forEach(files, function (file, cb) {
-
+		var files = JSON.parse(JSON.stringify(builder.config.styles));
+    
+		async.each(files, function (file, cb) {
+			var parser = new less.Parser(options.env || {});
 			var stylesheet = builder.path(file);
 			var cssConfig = options.cssConfig || {};
 			var data;
