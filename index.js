@@ -22,11 +22,11 @@ module.exports = function (builder, options) {
 			return callback();
 		}
 
-		var files = builder.config.styles;
-		var parser = new less.Parser(options.env || {});
+		// Make a copy of the list of files to parse
+		var files = builder.config.styles.slice(0);
 
-		async.forEach(files, function (file, cb) {
-
+		async.each(files, function (file, cb) {
+			var parser = new less.Parser(options.env || {});
 			var stylesheet = builder.path(file);
 			var cssConfig = options.cssConfig || {};
 			var data;
