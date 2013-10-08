@@ -22,8 +22,9 @@ module.exports = function (builder, options) {
 			return callback();
 		}
 
-		var files = JSON.parse(JSON.stringify(builder.config.styles));
-    
+		// Make a copy of the list of files to parse
+		var files = builder.config.styles.slice(0);
+
 		async.each(files, function (file, cb) {
 			var parser = new less.Parser(options.env || {});
 			var stylesheet = builder.path(file);
