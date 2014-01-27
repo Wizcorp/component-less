@@ -1,6 +1,6 @@
 {
 	"name": "component-less",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "A plugin to transpile Less files for the component builder.",
 	"keywords": [
 		"component",
