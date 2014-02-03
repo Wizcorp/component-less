@@ -53,7 +53,10 @@ module.exports = function (builder, options) {
 
 				var css = tree.toCSS(cssConfig);
 
-				var newFile = path.basename(file, path.extname(file)) + ((cssConfig.compress) ? '-compressed' : '') + '.css';
+				var dir = path.dirname(file);
+				var base = path.basename(file, path.extname(file)) + ((cssConfig.compress) ? '-compressed' : '') + '.css';
+				var newFile = path.join(dir, base);
+
 				builder.addFile('styles', newFile, css);
 				builder.removeFile('styles', file);
 
