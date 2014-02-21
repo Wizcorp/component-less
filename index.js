@@ -31,6 +31,7 @@ module.exports = function (builder, options) {
 			var env = options.env || {};
 			env.paths = env.paths || [];
 			env.paths.push(path.dirname(stylesheet));
+                        env.filename = stylesheet;
 
 			var parser = new less.Parser(env);
 			var cssConfig = options.cssConfig || {};
