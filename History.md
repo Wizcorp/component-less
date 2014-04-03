@@ -1,6 +1,6 @@
 # Release history
 
-## v0.1.6
+## v0.2.0
 * Updated dependencies
     - *async* to ~0.6.2
     - *less* to ~1.7.0
