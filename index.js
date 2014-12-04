@@ -5,16 +5,11 @@ var fs = require('fs');
 
 
 function isLess(filename) {
-	var ext = path.extname(filename);
-	if (ext === '.less') {
-		return true;
-	}
-	return false;
+	return path.extname(filename) === '.less';
 }
 
 
 module.exports = function (builder, options) {
-
 	options = options || {};
 
 	builder.hook('before styles', function (builder, callback) {
@@ -31,7 +26,7 @@ module.exports = function (builder, options) {
 			var env = options.env || {};
 			env.paths = env.paths || [];
 			env.paths.push(path.dirname(stylesheet));
-                        env.filename = stylesheet;
+			env.filename = stylesheet;
 
 			var parser = new less.Parser(env);
 			var cssConfig = options.cssConfig || {};
@@ -54,18 +49,11 @@ module.exports = function (builder, options) {
 
 				var css = tree.toCSS(cssConfig);
 
-				var dir = path.dirname(file);
-				var base = path.basename(file, path.extname(file)) + ((cssConfig.compress) ? '-compressed' : '') + '.css';
-				var newFile = path.join(dir, base);
-
-				builder.addFile('styles', newFile, css);
 				builder.removeFile('styles', file);
+				builder.addFile('styles', file, css);
 
 				cb();
 			});
-
-
 		}, callback);
-
 	});
 };

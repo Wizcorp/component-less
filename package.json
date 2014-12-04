@@ -1,6 +1,6 @@
 {
 	"name": "component-less",
-	"version": "0.2.0",
+	"version": "0.2.2",
 	"description": "A plugin to transpile Less files for the component builder.",
 	"keywords": [
 		"component",
@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"async": "~0.6.2",
-		"less": "1.7.4"
+		"less": "~1.7.0"
 	},
 	"devDependencies": {
 		"component-builder": "0.8.3"
